@@ -27,7 +27,12 @@ export function calculateSplit(input: SplitInput): SplitResult {
 }
 
 export function formatXlm(amount: number): string {
-  return amount.toLocaleString(undefined, {
+  // Always use "en-US" so that the decimal separator is consistently a period
+  // on both the server (Node.js) and the client (browser), regardless of the
+  // OS / browser locale setting.  Using `undefined` lets the runtime pick its
+  // own locale, which differs between Node and a Turkish Windows browser and
+  // causes React hydration mismatches ("100.00" vs "100,00").
+  return amount.toLocaleString("en-US", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 7,
   });

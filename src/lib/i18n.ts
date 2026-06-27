@@ -48,8 +48,6 @@ export type Copy = {
   fundingError: string;
   sendError: string;
   txSuccessMessage: (amount: string, payFor: number, total: number) => string;
-  
-  // New UI/UX labels
   scenariosLabel: string;
   pizzaNightName: string;
   lunaDinnerName: string;
@@ -66,150 +64,210 @@ export type Copy = {
   shareWhatsapp: string;
   shareTelegram: string;
   shareText: (total: string, share: string, yours: string, host: string) => string;
+  // Feature 1 – balance check
+  insufficientBalance: string;
+  // Feature 3 – copy address
+  copyAddress: string;
+  addressCopied: string;
+  // Feature 4 – QR
+  qrLabel: string;
+  // Feature 6 – account validation
+  checkingAccount: string;
+  recipientValid: string;
+  recipientNotFound: string;
+  // Feature 7 – multi-pay
+  multiPayTitle: string;
+  multiPayDesc: string;
+  addRecipient: string;
+  totalToSend: string;
+  sendAll: string;
+  sendingAll: string;
+  multiMemoLabel: string;
+  multiMemoPlaceholder: string;
+  multiTxSuccess: string;
+  multiTxError: string;
 };
 
 const en: Copy = {
-  tagline: "Stellar Testnet",
+  tagline: "Safe & Friendly Bill Splitter",
   heroTitle: "SplitPay",
   heroSubtitle:
-    "Split restaurant bills and group expenses, then pay your share instantly with XLM on Stellar testnet.",
-  connectPromptTitle: "Connect to start splitting",
+    "Split restaurant bills and group expenses with friends, then pay your portion instantly with secure digital test coins.",
+  connectPromptTitle: "Ready to settle up?",
   connectPromptBody:
-    "Install Freighter, switch to Testnet, then connect your wallet to calculate shares and send XLM.",
-  balanceLabel: "Your XLM balance",
-  balanceSource: "Stellar Testnet · live from Horizon",
+    "Connect your digital wallet to instantly calculate shares and pay your portion to the host.",
+  balanceLabel: "Your Available Balance",
+  balanceSource: "Secured on the digital network · Live",
   refresh: "Refresh",
-  getTestXlm: "Get test XLM",
-  funding: "Funding…",
-  splitEyebrow: "Split the bill",
-  splitTitle: "Calculate your share, pay in XLM",
+  getTestXlm: "Get Free Test Money",
+  funding: "Adding funds…",
+  splitEyebrow: "Settle the bill",
+  splitTitle: "Calculate shares & pay instantly",
   splitDescription:
-    "Enter the total bill and group size. SplitPay calculates each person's share and sends your portion on Stellar testnet.",
+    "Enter the total bill, table size, and the number of shares you want to cover. SplitPay handles the rest.",
   totalBill: "Total bill (XLM)",
-  peopleAtTable: "People at the table",
-  youPayFor: "You pay for",
-  youPayForHint: "people (including yourself)",
-  perPerson: "Per person",
-  yourShare: "Your share to send",
-  recipient: "Host Stellar address (Recipient)",
-  recipientHint: "The friend who paid the full bill and will receive your split shares.",
+  peopleAtTable: "People sharing the bill",
+  youPayFor: "You are covering",
+  youPayForHint: "people's share",
+  perPerson: "Each person owes",
+  yourShare: "Your total portion to send",
+  recipient: "Host's Stellar Address",
+  recipientHint: "Enter the Stellar address of the friend who paid the main bill.",
   memoLabel: "On-chain memo (optional)",
-  memoPlaceholder: "Pizza split",
-  memoHint:
-    "Embedded in the transaction as Stellar Memo (Text, max 28 chars) — visible on Stellar Expert.",
-  copySummary: "Copy split summary",
+  memoPlaceholder: "Pizza night",
+  memoHint: "Visible on Stellar Expert · max 28 characters.",
+  copySummary: "Copy payment summary",
   copiedSummary: "Copied!",
-  sendPayment: "Send my split payment",
-  sendingPayment: "Signing & sending on testnet…",
-  connectToPay: "Connect wallet to pay",
+  sendPayment: "Pay My Share Now",
+  sendingPayment: "Sending your share safely…",
+  connectToPay: "Connect Wallet to Send",
   connected: "Connected",
-  connectFreighter: "Connect Freighter",
+  connectFreighter: "Connect Wallet",
   connecting: "Connecting…",
   disconnect: "Disconnect",
-  txLoadingTitle: "Transaction in progress",
-  txSuccessTitle: "Payment sent on testnet",
-  txErrorTitle: "Transaction failed",
-  txWaiting: "Waiting for Freighter signature…",
-  viewExplorer: "View on Stellar Expert →",
-  hashLabel: "Hash",
-  footer: "SplitPay · White Belt submission · Freighter + Horizon + Stellar SDK on testnet only",
-  balanceLoadError: "Could not load balance. Fund your testnet account and try again.",
-  walletConnectError: "Wallet connection failed.",
-  fundingError: "Funding failed.",
-  sendError: "Something went wrong sending the payment.",
+  txLoadingTitle: "Payment in progress",
+  txSuccessTitle: "Payment Succeeded!",
+  txErrorTitle: "Payment Failed",
+  txWaiting: "Please confirm the payment in Freighter…",
+  viewExplorer: "Verify on-chain →",
+  hashLabel: "Transaction ID",
+  footer: "SplitPay · Settle expenses with friends safely using Stellar",
+  balanceLoadError: "Could not fetch balance. Get some free test money and try again.",
+  walletConnectError: "Could not link your wallet.",
+  fundingError: "Could not receive free test money.",
+  sendError: "Something went wrong sending your share.",
   txSuccessMessage: (amount, payFor, total) =>
-    `Sent ${amount} XLM for ${payFor} of ${total} shares.`,
-
-  // New UI/UX labels
-  scenariosLabel: "Select a demo scenario:",
-  pizzaNightName: "🍕 Pizza Night",
-  lunaDinnerName: "🍽️ Dinner at Luna",
-  coffeeBreakName: "☕ Coffee Break",
-  hostLabel: "Host (Receives)",
-  youLabel: "You (Payer)",
+    `Successfully paid ${amount} XLM for ${payFor} of ${total} shares.`,
+  scenariosLabel: "Try a quick demo scenario:",
+  pizzaNightName: "Pizza Night",
+  lunaDinnerName: "Dinner at Luna",
+  coffeeBreakName: "Coffee Break",
+  hostLabel: "Host",
+  youLabel: "You",
   friendLabel: "Friend",
   receivesLabel: "receives",
   paysLabel: "pays",
-  unpaidLabel: "unpaid share",
+  unpaidLabel: "unpaid",
   receiptHeader: "BILL SPLIT RECEIPT",
   receiptFooter: "THANK YOU FOR USING SPLITPAY",
-  shareTitle: "Share payment details:",
+  shareTitle: "Send receipt to friends:",
   shareWhatsapp: "WhatsApp",
   shareTelegram: "Telegram",
   shareText: (total, share, yours, host) =>
-    `We split the bill with SplitPay! Total bill: ${total} XLM. Per person share: ${share} XLM. I paid my share of ${yours} XLM to Host ${host}.`,
+    `We split the bill with SplitPay! Total: ${total} XLM · Per person: ${share} XLM · My share of ${yours} XLM sent to ${host}.`,
+  // Feature 1
+  insufficientBalance: "Insufficient balance for this payment.",
+  // Feature 3
+  copyAddress: "Copy address",
+  addressCopied: "Copied!",
+  // Feature 4
+  qrLabel: "Scan to get host's address",
+  // Feature 6
+  checkingAccount: "Checking address…",
+  recipientValid: "Account found on testnet ✓",
+  recipientNotFound: "No account found on testnet — recipient must activate their wallet first.",
+  // Feature 7
+  multiPayTitle: "Multi-Pay",
+  multiPayDesc: "Bundle payments to multiple people into a single Stellar transaction.",
+  addRecipient: "Add recipient",
+  totalToSend: "Total to send",
+  sendAll: "Send All",
+  sendingAll: "Sending…",
+  multiMemoLabel: "Batch memo (optional)",
+  multiMemoPlaceholder: "Group dinner",
+  multiTxSuccess: "All payments sent successfully!",
+  multiTxError: "Multi-payment failed.",
 };
 
 const tr: Copy = {
-  tagline: "Stellar Testnet",
+  tagline: "Güvenli ve Kolay Hesap Bölücü",
   heroTitle: "SplitPay",
   heroSubtitle:
-    "Grup harcamalarını bölüştürün ve payınızı Stellar testnet üzerinde XLM ile anında ödeyin.",
-  connectPromptTitle: "Başlamak için cüzdanı bağlayın",
+    "Yemek hesaplarını ve grup masraflarını arkadaşlarınızla kolayca bölüşün, payınızı dijital test parasıyla saniyeler içinde ödeyin.",
+  connectPromptTitle: "Hesaplaşmaya hazır mısınız?",
   connectPromptBody:
-    "Freighter kurun, Testnet'e geçin, ardından pay hesaplamak ve XLM göndermek için cüzdanınızı bağlayın.",
-  balanceLabel: "XLM bakiyeniz",
-  balanceSource: "Stellar Testnet · Horizon canlı verisi",
+    "Payınızı anında hesaplamak ve hesabı ödeyen kişiye göndermek için cüzdanınızı bağlayın.",
+  balanceLabel: "Kullanılabilir Bakiyeniz",
+  balanceSource: "Dijital ağda güvenle korunuyor · Canlı",
   refresh: "Yenile",
-  getTestXlm: "Test XLM al",
+  getTestXlm: "Bedava Test Parası Al",
   funding: "Yükleniyor…",
-  splitEyebrow: "Hesabı böl",
-  splitTitle: "Payını hesapla, XLM ile öde",
+  splitEyebrow: "Hesabı bölüşün",
+  splitTitle: "Payını hesapla, anında öde",
   splitDescription:
-    "Toplam tutarı ve kişi sayısını girin. SplitPay kişi başı payı hesaplar ve sizin payınızı Stellar testnet'e gönderir.",
+    "Toplam tutarı, masadaki kişi sayısını ve kaç kişilik pay ödeyeceğinizi girin. Gerisini SplitPay halleder.",
   totalBill: "Toplam hesap (XLM)",
-  peopleAtTable: "Masadaki kişi sayısı",
-  youPayFor: "Sen kaç kişi için ödüyorsun",
-  youPayForHint: "kişi (kendin dahil)",
-  perPerson: "Kişi başı",
-  yourShare: "Göndereceğin pay",
-  recipient: "Host Stellar adresi (Alıcı)",
-  recipientHint: "Hesabın tamamını ödeyen ve sizin payınızı alacak olan arkadaşınız.",
-  memoLabel: "Zincir üstü memo (isteğe bağlı)",
-  memoPlaceholder: "Pizza hesabı",
-  memoHint:
-    "İşleme Stellar Memo (Text, max 28 karakter) olarak gömülür — Stellar Expert'te görünür.",
-  copySummary: "Özet linkini kopyala",
+  peopleAtTable: "Hesabı bölüşen kişi sayısı",
+  youPayFor: "Ödeyeceğiniz pay sayısı",
+  youPayForHint: "kişilik pay",
+  perPerson: "Kişi başı düşen pay",
+  yourShare: "Göndereceğiniz toplam pay",
+  recipient: "Hesabı Ödeyen Arkadaşınızın Adresi",
+  recipientHint: "Hesabın tamamını ödeyen arkadaşınızın Stellar adresini girin.",
+  memoLabel: "Zincir üstü not (isteğe bağlı)",
+  memoPlaceholder: "Pizza Gecesi",
+  memoHint: "Stellar Expert'te görünür · maks. 28 karakter.",
+  copySummary: "Ödeme özetini kopyala",
   copiedSummary: "Kopyalandı!",
-  sendPayment: "Payımı gönder",
-  sendingPayment: "Testnet'e imzalanıyor ve gönderiliyor…",
-  connectToPay: "Ödemek için cüzdanı bağla",
+  sendPayment: "Payımı Şimdi Gönder",
+  sendingPayment: "Payınız güvenle gönderiliyor…",
+  connectToPay: "Göndermek için Cüzdanı Bağla",
   connected: "Bağlı",
-  connectFreighter: "Freighter bağla",
+  connectFreighter: "Cüzdanı Bağla",
   connecting: "Bağlanıyor…",
-  disconnect: "Bağlantıyı kes",
-  txLoadingTitle: "İşlem devam ediyor",
-  txSuccessTitle: "Ödeme testnet'e gönderildi",
-  txErrorTitle: "İşlem başarısız",
-  txWaiting: "Freighter imzası bekleniyor…",
-  viewExplorer: "Stellar Expert'te gör →",
-  hashLabel: "Hash",
-  footer: "SplitPay · White Belt · Freighter + Horizon + Stellar SDK · yalnızca testnet",
-  balanceLoadError: "Bakiye yüklenemedi. Testnet hesabınızı fund edip tekrar deneyin.",
-  walletConnectError: "Cüzdan bağlantısı başarısız.",
-  fundingError: "Fund işlemi başarısız.",
-  sendError: "Ödeme gönderilirken bir hata oluştu.",
+  disconnect: "Bağlantıyı Kes",
+  txLoadingTitle: "Ödeme işlemi yapılıyor",
+  txSuccessTitle: "Ödeme Başarıyla Gönderildi!",
+  txErrorTitle: "Ödeme Başarısız Oldu",
+  txWaiting: "Lütfen Freighter'daki ödeme onayını kabul edin…",
+  viewExplorer: "Zincirde doğrula →",
+  hashLabel: "İşlem ID'si",
+  footer: "SplitPay · Masrafları Stellar ağı ile güvenle bölüşün",
+  balanceLoadError: "Bakiye yüklenemedi. Aşağıdan bedava test parası alıp tekrar deneyin.",
+  walletConnectError: "Cüzdan bağlantısı kurulamadı.",
+  fundingError: "Test parası yüklenemedi.",
+  sendError: "Payınız gönderilirken bir hata oluştu.",
   txSuccessMessage: (amount, payFor, total) =>
-    `${total} paydan ${payFor} tanesi için ${amount} XLM gönderildi.`,
-
-  // New UI/UX labels
-  scenariosLabel: "Bir demo senaryosu seçin:",
-  pizzaNightName: "🍕 Pizza Gecesi",
-  lunaDinnerName: "🍽️ Luna Akşam Yemeği",
-  coffeeBreakName: "☕ Kahve Molası",
-  hostLabel: "Host (Alıcı)",
-  youLabel: "Siz (Ödeyen)",
+    `Toplam ${total} paydan ${payFor} kişilik pay için ${amount} XLM başarıyla gönderildi.`,
+  scenariosLabel: "Bir demo senaryosu deneyin:",
+  pizzaNightName: "Pizza Gecesi",
+  lunaDinnerName: "Luna Akşam Yemeği",
+  coffeeBreakName: "Kahve Molası",
+  hostLabel: "Host",
+  youLabel: "Siz",
   friendLabel: "Arkadaş",
   receivesLabel: "alır",
   paysLabel: "öder",
-  unpaidLabel: "ödenmemiş pay",
+  unpaidLabel: "ödenmedi",
   receiptHeader: "ADİSYON DETAYI",
   receiptFooter: "SPLITPAY'İ TERCİH ETTİĞİNİZ İÇİN TEŞEKKÜRLER",
-  shareTitle: "Ödeme detayını paylaş:",
+  shareTitle: "Fişi arkadaşlarına gönder:",
   shareWhatsapp: "WhatsApp",
   shareTelegram: "Telegram",
   shareText: (total, share, yours, host) =>
-    `Hesabı SplitPay ile bölüştük! Toplam: ${total} XLM. Kişi başı düşen pay: ${share} XLM. Host ${host} adresine ${yours} XLM payımı ödedim.`,
+    `Hesabı SplitPay ile bölüştük! Toplam: ${total} XLM · Kişi başı: ${share} XLM · ${yours} XLM'lik payımı ${host} adresine gönderdim.`,
+  // Feature 1
+  insufficientBalance: "Bu ödeme için bakiyeniz yetersiz.",
+  // Feature 3
+  copyAddress: "Adresi kopyala",
+  addressCopied: "Kopyalandı!",
+  // Feature 4
+  qrLabel: "Host adresini taratın",
+  // Feature 6
+  checkingAccount: "Adres kontrol ediliyor…",
+  recipientValid: "Testnet'te hesap bulundu ✓",
+  recipientNotFound: "Testnet'te bu adreste hesap bulunamadı — alıcı önce cüzdanını aktive etmeli.",
+  // Feature 7
+  multiPayTitle: "Toplu Ödeme",
+  multiPayDesc: "Birden fazla kişiye ödemeyi tek bir Stellar işleminde birleştirin.",
+  addRecipient: "Kişi ekle",
+  totalToSend: "Toplam gönderilecek",
+  sendAll: "Tümünü Gönder",
+  sendingAll: "Gönderiliyor…",
+  multiMemoLabel: "Toplu not (isteğe bağlı)",
+  multiMemoPlaceholder: "Grup yemeği",
+  multiTxSuccess: "Tüm ödemeler başarıyla gönderildi!",
+  multiTxError: "Toplu ödeme başarısız oldu.",
 };
 
 export const copy: Record<Locale, Copy> = { en, tr };
@@ -227,10 +285,8 @@ export function buildShareSummary(
   appUrl = getAppUrl()
 ): string {
   const amount = `${formatXlm(perPersonShare)} XLM`;
-
   if (locale === "tr") {
     return `SplitPay ile hesaplaştık! Kişi başı düşen pay: ${amount}. Ödemek için: ${appUrl}`;
   }
-
   return `We split with SplitPay! Per person: ${amount}. Pay here: ${appUrl}`;
 }
