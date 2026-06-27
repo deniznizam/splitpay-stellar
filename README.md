@@ -118,8 +118,8 @@ Save under `public/screenshots/`:
 - [x] Success / failure feedback with transaction hash
 - [x] On-chain memo support
 - [x] EN / TR UI
-- [ ] Public GitHub repository
-- [ ] Deploy to Vercel
+- [x] Public GitHub repository → https://github.com/deniznizam/splitpay-stellar
+- [ ] Deploy to Vercel → `[Vercel URL buraya ekle]`
 - [ ] README live URL + screenshots attached
 
 ## License
