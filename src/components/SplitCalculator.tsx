@@ -112,9 +112,9 @@ export function SplitCalculator({
   })();
 
   const demoScenarios = [
-    { id: "pizza", name: t.pizzaNightName, total: "100", people: "4", payFor: "1", host: "GBRPYHIL2CIWTCQ6TQ5HQVN675FWG2W263ZJF6TH673DNDO3Z7PFR32B", memo: "Pizza Night" },
-    { id: "luna",  name: t.lunaDinnerName, total: "240", people: "6", payFor: "2", host: "GDU523P6X6PVMNYKGDW5QMX7ZTYO7T7BOK2Z3Z7PFR32BNDO3Z7PFR111", memo: "Dinner at Luna" },
-    { id: "coffee",name: t.coffeeBreakName,total: "30",  people: "3", payFor: "1", host: "GCQ6TQ5HQVN675FWG2W263ZJF6TH673DNDO3Z7PFR32BNDO3Z7PFR888", memo: "Coffee Break" },
+    { id: "pizza", name: t.pizzaNightName, total: "100", people: "4", payFor: "1", host: "", memo: "Pizza Night" },
+    { id: "luna",  name: t.lunaDinnerName, total: "240", people: "6", payFor: "2", host: "", memo: "Dinner at Luna" },
+    { id: "coffee",name: t.coffeeBreakName,total: "30",  people: "3", payFor: "1", host: "", memo: "Coffee Break" },
   ];
 
   // Recipient status badge
@@ -260,7 +260,7 @@ export function SplitCalculator({
         {/* Send / Connect */}
         {isConnected ? (
           <button type="button" id="send-payment-btn" onClick={onSubmit}
-            disabled={isSending || !split || !recipient.trim() || insufficient}
+            disabled={isSending || !split || !recipient.trim() || insufficient || recipientStatus === "invalid" || recipientStatus === "notfound" || recipientStatus === "checking"}
             className="mt-5 w-full rounded-2xl bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 px-6 py-4 text-sm font-bold text-white shadow-lg shadow-indigo-900/30 transition disabled:cursor-not-allowed disabled:opacity-50">
             {isSending ? t.sendingPayment : t.sendPayment}
           </button>
