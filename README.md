@@ -12,6 +12,55 @@ SplitPay is a responsive web dApp for the **Stellar White Belt** challenge. Ente
 
 ---
 
+## User Workflow
+
+> **TR:** Kullanıcının uygulamayı açmaktan başarılı ödemeye kadar geçtiği tam akış. Tüm validasyon ve hata yolları dahildir.
+
+```mermaid
+flowchart TD
+    A([🚀 Open SplitPay]) --> B{Freighter\nInstalled?}
+    B -- No --> C[Install Freighter\nfreighter.app]
+    C --> B
+    B -- Yes --> D[Connect Wallet\nrequestAccess API]
+    D --> E{Access\nGranted?}
+    E -- Denied --> F([❌ Show Error])
+    E -- Granted --> G[Fetch XLM Balance\nvia Horizon API]
+    G --> H[Display Balance\n+ Live USD Equivalent]
+    H --> I[Enter Bill Details\nTotal · People · Shares]
+    I --> J[Instant Share Calculation\nYour share = Total ÷ People × Shares]
+    J --> K[Enter Recipient Address]
+    K --> L{Address\nFormat Valid?}
+    L -- Invalid --> M([🔴 Invalid Badge\nSend Disabled])
+    L -- Valid --> N{Account Exists\non Testnet?\nHorizon Lookup}
+    N -- Not Found --> O([🟡 Warning Badge\nSend Disabled])
+    N -- ✅ Found --> P{Balance ≥\nYour Share?}
+    P -- Insufficient --> Q([🟠 Balance Warning\nSend Disabled])
+    P -- ✅ Sufficient --> R[Click Pay My Share 🚀]
+    R --> S[Build Transaction\nStellar SDK\nMemo + Payment Op]
+    S --> T[Sign via Freighter\nFreighter API]
+    T --> U{User\nApproves?}
+    U -- Rejected --> V([❌ Show Rejection])
+    U -- ✅ Approved --> W[Submit to\nHorizon Testnet]
+    W --> X{Transaction\nResult?}
+    X -- Failed --> Y([❌ Show Error\n+ Reason])
+    X -- ✅ Success --> Z[🎊 Confetti Burst!]
+    Z --> AA[Show TX Hash\n+ Stellar Expert Link]
+    AA --> BB[Refresh Balance]
+    BB --> I
+
+    style A fill:#6366f1,color:#fff,stroke:none
+    style Z fill:#10b981,color:#fff,stroke:none
+    style AA fill:#10b981,color:#fff,stroke:none
+    style F fill:#ef4444,color:#fff,stroke:none
+    style M fill:#ef4444,color:#fff,stroke:none
+    style O fill:#f59e0b,color:#fff,stroke:none
+    style Q fill:#f97316,color:#fff,stroke:none
+    style V fill:#ef4444,color:#fff,stroke:none
+    style Y fill:#ef4444,color:#fff,stroke:none
+```
+
+---
+
 ## Screenshots / Ekran Görüntüleri
 
 > **TR:** Jüri için tüm akış ekran görüntüleri aşağıdadır.
