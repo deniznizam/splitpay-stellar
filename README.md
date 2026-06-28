@@ -8,7 +8,7 @@ SplitPay is a responsive web dApp for the **Stellar White Belt** challenge. Ente
 
 ## Live Demo
 
-`[Vercel URL — deploy sonrası ekle]`
+**[https://splitpay-stellar.vercel.app](https://splitpay-stellar.vercel.app)**
 
 ---
 
@@ -168,8 +168,8 @@ public/
 - [x] On-chain memo support
 - [x] EN / TR UI
 - [x] Public GitHub repository → https://github.com/deniznizam/splitpay-stellar
-- [ ] Deploy to Vercel → `[Vercel URL buraya ekle]`
-- [ ] README live URL + screenshots attached
+- [x] Deploy to Vercel → https://splitpay-stellar.vercel.app
+- [x] README live URL + screenshots attached
 
 ---
 
